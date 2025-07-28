@@ -17,4 +17,19 @@ class TokenService {
     }
     throw Exception('Failed to fetch');
   }
+
+  Future<List<Token>> fetchTickers() async {
+    final resp = await http.get(
+      Uri.parse('https://spot-markets.goonus.io/ticker-stats'),
+    );
+
+    if (resp.statusCode == 200) {
+      final list = (jsonDecode(resp.body)['a'] as List);
+
+      return list
+          .map((e) => Token.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }
+    throw Exception('Failed to fetch');
+  }
 }
