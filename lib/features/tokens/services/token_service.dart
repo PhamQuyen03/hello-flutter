@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/token.dart';
 
-class UserService {
+class TokenService {
   Future<List<Token>> fetchTokens() async {
     final resp = await http.get(
       Uri.parse('https://spot-markets.goonus.io/symbol-configs'),
