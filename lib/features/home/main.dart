@@ -13,49 +13,52 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       appBar: null,
       body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: ElevatedButton.icon(
-                      icon: const Icon(Icons.remove),
-                      label: const Text('Counter'),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(140, 48),
-                      ),
-                      onPressed: () => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => CounterPage()),
+        child: Container(
+          margin: const EdgeInsets.only(top: 40),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: ElevatedButton.icon(
+                        icon: const Icon(Icons.add_card_rounded),
+                        label: const Text('Counter'),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(140, 48),
                         ),
-                      },
+                        onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => CounterPage()),
+                          ),
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: ElevatedButton.icon(
-                      icon: const Icon(Icons.add),
-                      label: const Text('Tokens'),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(140, 48),
-                      ),
-                      onPressed: () => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => ListTokenPage()),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: ElevatedButton.icon(
+                        icon: const Icon(Icons.list_outlined),
+                        label: const Text('Tokens'),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(140, 48),
                         ),
-                      },
+                        onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => ListTokenPage()),
+                          ),
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
