@@ -11,34 +11,14 @@ class TokenListController extends AsyncNotifier<List<Token>> {
   @override
   FutureOr<List<Token>> build() async {
     _service = ref.read(tokenServiceProvider);
-    return await _service.fetchTokens();
+    final resTokens = await _service.fetchTokens();
+    final resTickers = await _service.fetchTickers();
+    return resTokens;
   }
 
   Future<void> refresh() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async => await _service.fetchTokens());
-  }
-
-  // Cập nhật toàn bộ list mới (ví dụ thêm user)
-  void setTokens(List<Token> newList) {
-    state = AsyncData(newList);
-  }
-
-  void addToken(Token token) {
-    state = AsyncData([...state.requireValue, token]);
-  }
-
-  void removeToken(String symbol) {
-    final prev = state.requireValue;
-    state = AsyncData(prev.where((u) => u.symbol != symbol).toList());
-  }
-
-  void updateToken(Token token) {
-    final prev = state.requireValue;
-    final updated = prev
-        .map((u) => u.symbol == token.symbol ? token : u)
-        .toList();
-    state = AsyncData(updated);
   }
 }
 
