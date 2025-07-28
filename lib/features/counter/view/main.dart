@@ -4,21 +4,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'counter_action.dart';
 import 'counter_content.dart';
 
+import '../models/counter_provider.dart';
 import '../../../features/tokens/view/list_page.dart';
 
 class CounterPage extends ConsumerWidget {
   const CounterPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(counterProvider.notifier);
+
     return Scaffold(
       appBar: null,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CounterContent(),
             CounterAction(),
-
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: Row(
@@ -31,6 +33,7 @@ class CounterPage extends ConsumerWidget {
                       minimumSize: const Size(140, 48),
                     ),
                     onPressed: () => {
+                      notifier.reset(),
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (_) => ListTokenPage()),

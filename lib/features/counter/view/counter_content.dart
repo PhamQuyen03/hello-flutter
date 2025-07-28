@@ -12,7 +12,6 @@ class CounterContent extends ConsumerWidget {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Align(
