@@ -10,4 +10,8 @@ class Ticker {
       currentPrice: json['b'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {'symbol': symbol, 'currentPrice': currentPrice};
+  }
 }

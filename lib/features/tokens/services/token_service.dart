@@ -25,7 +25,7 @@ class TokenService {
     );
 
     if (resp.statusCode == 200) {
-      final list = (jsonDecode(resp.body)['a'] as List);
+      final list = (jsonDecode(resp.body) as List);
 
       return list
           .map((e) => Ticker.fromJson(e as Map<String, dynamic>))

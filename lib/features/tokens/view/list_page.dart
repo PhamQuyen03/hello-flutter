@@ -7,7 +7,7 @@ class ListTokenPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncUsers = ref.watch(tokenListController);
+    final asyncTokens = ref.watch(tokenListController);
 
     return Scaffold(
       appBar: AppBar(
@@ -22,17 +22,17 @@ class ListTokenPage extends ConsumerWidget {
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () => ref.read(tokenListController.notifier).refresh(),
-          child: asyncUsers.when(
+          child: asyncTokens.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (err, _) => ListView(
               physics: const AlwaysScrollableScrollPhysics(),
               children: [Center(child: Text('Error: $err'))],
             ),
-            data: (users) => ListView.builder(
+            data: (tokens) => ListView.builder(
               physics: const AlwaysScrollableScrollPhysics(),
-              itemCount: users.length,
+              itemCount: tokens.length,
               itemBuilder: (_, idx) {
-                final u = users[idx];
+                final u = tokens[idx];
                 return ListTile(
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(
@@ -40,7 +40,7 @@ class ListTokenPage extends ConsumerWidget {
                     ),
                   ),
                   title: Text('${u.base}/${u.quote}'),
-                  subtitle: Text(u.symbol),
+                  subtitle: Text(u.currentPrice.toString()),
                 );
               },
             ),

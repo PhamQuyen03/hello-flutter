@@ -19,4 +19,13 @@ class Token {
       pricePrecision: json['k'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'symbol': symbol,
+      'base': base,
+      'quote': quote,
+      'pricePrecision': pricePrecision,
+    };
+  }
 }
