@@ -53,10 +53,7 @@ class ListTokenPage extends ConsumerWidget with RouteAware {
                   ),
                   title: Text('${u.base}/${u.quote}'),
                   subtitle: Text(
-                    FormatCurrency.currency(
-                      num.parse(u.currentPrice),
-                      u.pricePrecision,
-                    ),
+                    '${FormatCurrency.currency(num.parse(u.currentPrice), u.pricePrecision)} ${u.quote}',
                   ),
                 );
               },

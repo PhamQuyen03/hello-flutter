@@ -20,8 +20,8 @@ class FormatCurrency {
   /// Format USD (hoặc tiền khác), có thể chỉnh số thập phân
   static String currency(num number, int decimalDigits) {
     final formatter = NumberFormat.currency(
-      locale: 'vi_VN',
       decimalDigits: decimalDigits,
+      symbol: '',
     );
     return formatter.format(number);
   }
