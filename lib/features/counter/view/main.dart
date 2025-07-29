@@ -15,7 +15,7 @@ class CounterPage extends ConsumerWidget {
     final notifier = ref.read(counterProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Counter')),
+      appBar: AppBar(title: const Text('Counter State')),
 
       body: SafeArea(
         child: Column(

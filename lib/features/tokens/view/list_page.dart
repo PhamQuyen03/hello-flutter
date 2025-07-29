@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../controller/list.dart';
+import '../../../utils/format_currency.dart';
 
-class ListTokenPage extends ConsumerWidget {
+class ListTokenPage extends ConsumerWidget with RouteAware {
   const ListTokenPage({super.key});
+  @override
+  void didPush() {
+    // Chuyển hành màn hình => refresh
+    debugPrint('didPush __');
+  }
+
+  @override
+  void didPopNext() {
+    // Quay lại màn hình => refresh
+    debugPrint('didPopNext __');
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,7 +52,12 @@ class ListTokenPage extends ConsumerWidget {
                     ),
                   ),
                   title: Text('${u.base}/${u.quote}'),
-                  subtitle: Text(u.currentPrice.toString()),
+                  subtitle: Text(
+                    FormatCurrency.currency(
+                      num.parse(u.currentPrice),
+                      u.pricePrecision,
+                    ),
+                  ),
                 );
               },
             ),
