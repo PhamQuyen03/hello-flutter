@@ -44,16 +44,16 @@ class ListTokenPage extends ConsumerWidget with RouteAware {
               physics: const AlwaysScrollableScrollPhysics(),
               itemCount: tokens.length,
               itemBuilder: (_, idx) {
-                final u = tokens[idx];
+                final token = tokens[idx];
                 return ListTile(
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(
-                      'https://cloudfront.goonus.io/assets/icon/icon_${u.base}.png',
+                      'https://cloudfront.goonus.io/assets/icon/icon_${token.base}.png',
                     ),
                   ),
-                  title: Text('${u.base}/${u.quote}'),
+                  title: Text('${token.base}/${token.quote}'),
                   subtitle: Text(
-                    '${FormatCurrency.currency(num.parse(u.currentPrice), u.pricePrecision)} ${u.quote}',
+                    '${FormatCurrency.currency(num.parse(token.currentPrice), token.pricePrecision)} ${token.quote}',
                   ),
                 );
               },

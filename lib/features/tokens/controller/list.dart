@@ -14,12 +14,14 @@ class TokenListController extends AsyncNotifier<List<Info>> {
     final resTokens = await _service.fetchTokens();
     final resTickers = await _service.fetchTickers();
 
-    final res = resTokens.map((e) {
-      final ticker = resTickers.firstWhere((el) => el.symbol == e.symbol);
-      return Info.fromJson({...e.toJson(), ...ticker.toJson()});
+    final result = resTokens.map((token) {
+      final ticker = resTickers.firstWhere(
+        (ticker) => ticker.symbol == token.symbol,
+      );
+      return Info.fromJson({...token.toJson(), ...ticker.toJson()});
     }).toList();
 
-    return res;
+    return result;
   }
 
   Future<void> refresh() async {
@@ -29,12 +31,14 @@ class TokenListController extends AsyncNotifier<List<Info>> {
     final resTokens = await _service.fetchTokens();
     final resTickers = await _service.fetchTickers();
 
-    final res = resTokens.map((e) {
-      final ticker = resTickers.firstWhere((el) => el.symbol == e.symbol);
-      return Info.fromJson({...e.toJson(), ...ticker.toJson()});
+    final result = resTokens.map((token) {
+      final ticker = resTickers.firstWhere(
+        (ticker) => ticker.symbol == token.symbol,
+      );
+      return Info.fromJson({...token.toJson(), ...ticker.toJson()});
     }).toList();
 
-    state = AsyncValue.data(res);
+    state = AsyncValue.data(result);
   }
 }
 
